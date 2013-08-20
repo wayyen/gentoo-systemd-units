@@ -1,0 +1,13 @@
+[Unit]
+Description=MariaDB Server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --basedir=/usr --datadir=/var/lib/mysql --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock
+ExecStop=/bin/kill -15 $MAINPID
+PIDFile=/var/run/mysqld/mysql.pid
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
